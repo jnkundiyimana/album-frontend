@@ -7,6 +7,11 @@ const routes =  [
     component: () => import("./views/TutorialsList.vue")
   },
   {
+    path: "/albums",
+    name: "albums",
+    component: () => import("./views/AllAlbums.vue")
+  },
+  {
     path: "/edit/:id",
     name: "edit",
     component: () => import("./views/EditTutorial.vue"),
@@ -21,6 +26,12 @@ const routes =  [
     path: "/view",
     name: "view",
     component: () => import("./views/ViewTutorial.vue"),
+    props: true
+  },
+  {
+    path: "/viewAlbum/:id",
+    name: "viewAlbum",
+    component: () => import("./views/ViewAlbum.vue"),
     props: true
   },
   {
