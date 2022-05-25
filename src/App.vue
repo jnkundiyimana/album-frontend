@@ -11,6 +11,7 @@
       <v-app-bar-title>Album Tracker</v-app-bar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
+        <v-btn variant="text" @click="goArtistList"> Artists </v-btn>
         <v-btn variant="text" @click="goList"> List </v-btn>
         <v-btn variant="text" @click="goAdd"> Add </v-btn>
       </v-toolbar-items>
@@ -32,6 +33,9 @@ export default {
     logo,
   }),
   methods: {
+    goArtistList(){
+      this.$router.push({name: "artistList"})
+    },
     goAdd() {
       this.$router.push({ name: "add" });
     },
