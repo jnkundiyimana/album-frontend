@@ -1,13 +1,16 @@
 import http from "../http-common";
 class AlbumDataService {
   getAll() {
-    return http.get("/albums");
+    return http.get("/albums/");
   }
   get(id) {
     return http.get(`/albums/${id}`);
   }
+  getTracksForAlbum(id) {
+    return http.get(`/albums/${id}/tracks`);
+  }
   create(data) {
-    return http.post("/albums", data);
+    return http.post("/albums/", data);
   }
   update(id, data) {
     return http.put(`/albums/${id}`, data);

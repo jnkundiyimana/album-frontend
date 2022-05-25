@@ -39,32 +39,13 @@
   <v-btn @click="removeAllAlbums"> Remove All </v-btn>
 </template>
 <script>
-import ALbumDataService from "../services/AlbumDataService";
+import AlbumDataService from "../services/AlbumDataService";
 import AlbumDisplay from "@/components/AlbumDisplay.vue";
 export default {
   name: "album-list",
   data() {
     return {
-      albums: [
-        {
-          id: 1,
-          title: "Beach Boys Album 1",
-          numberOfTracks: 10,
-          artistId: 1,
-        },
-        {
-          id: 2,
-          title: "Beach Boys Album 2",
-          numberOfTracks: 10,
-          artistId: 2,
-        },
-        {
-          id: 3,
-          title: "Beach Boys Album 3",
-          numberOfTracks: 11,
-          artistId: 3,
-        },
-      ],
+      albums: [],
       currentAlbum: null,
       currentIndex: -1,
       title: "",
@@ -91,7 +72,7 @@ export default {
         });
     },
     retrieveAlbums() {
-      AlbumsDataService.getAll()
+      AlbumDataService.getAll()
         .then((response) => {
           this.albums = response.data;
         })
@@ -130,9 +111,9 @@ export default {
         });
     },
   },
-  //   mounted() {
-  //     this.retrieveAlbums();
-  //   },
+  mounted() {
+    this.retrieveAlbums();
+  },
 };
 </script>
 <style>
