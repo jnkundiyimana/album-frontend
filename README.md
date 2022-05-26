@@ -1,2 +1,2 @@
-# album-frontend
-Front-end for Album management system
+# tutorial-frontend
+Tutorial Vue frontend
