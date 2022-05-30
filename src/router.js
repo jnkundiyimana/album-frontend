@@ -2,12 +2,6 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes =  [
   {
     path: "/",
-    alias: "/tutorials",
-    name: "tutorials",
-    component: () => import("./views/TutorialsList.vue")
-  },
-  {
-    path: "/albums",
     name: "albums",
     component: () => import("./views/AllAlbums.vue")
   },
@@ -18,9 +12,9 @@ const routes =  [
     props: true
   },
   {
-    path: "/add",
+    path: "/add-album",
     name: "add",
-    component: () => import("./views/AddTutorial.vue")
+    component: () => import("./views/AddAlbum.vue")
   },
   {
     path: "/view",
