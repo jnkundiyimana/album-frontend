@@ -12,7 +12,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn variant="text" @click="goArtistList"> Artists </v-btn>
-        <v-btn variant="text" @click="goList"> List </v-btn>
+        <v-btn variant="text" @click="goAlbumList"> Albums </v-btn>
         <v-btn variant="text" @click="goAdd"> Add </v-btn>
       </v-toolbar-items>
     </v-app-bar>
@@ -39,8 +39,8 @@ export default {
     goAdd() {
       this.$router.push({ name: "add" });
     },
-    goList() {
-      this.$router.push({ name: "tutorials" });
+    goAlbumList() {
+      this.$router.push({ name: "albums" });
     },
   },
 };
