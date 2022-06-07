@@ -13,7 +13,7 @@
         <v-select
           :items="artists"
           label="Artist"
-          item-title="name"
+          item-title="artistName"
           item-value="id"
           v-model="album.artistId"
         ></v-select>
@@ -68,8 +68,9 @@ export default {
     cancel(){
         this.$router.push({ name: 'albums' });
     },
-    mounted() {
-      ArtistDataService.getAll()
+},
+   mounted() {
+    ArtistDataService.getAll()
         .then((response) => {
           this.artists = response.data;
           console.log("artists:: ", response.data);
@@ -78,7 +79,6 @@ export default {
         .catch((e) => { 
           this.message = e.response.data.message;
         });
-  },
   },
 }
 
