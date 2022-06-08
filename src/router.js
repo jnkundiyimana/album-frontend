@@ -17,11 +17,11 @@ const routes =  [
     component: () => import("./views/EditTutorial.vue"),
     props: true
   },
-  // {
-  //   path: "/add-album",
-  //   name: "add",
-  //   component: () => import("./views/AddAlbum.vue")
-  // },
+  {
+    path: "/add-album",
+    name: "add",
+    component: () => import("./views/AddAlbum.vue")
+  },
   {
     path: "/view",
     name: "view",
