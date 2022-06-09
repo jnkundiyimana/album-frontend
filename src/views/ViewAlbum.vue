@@ -10,9 +10,6 @@
       <v-col cols="8" sm="2">
         <span class="text-h6">Track Name</span>
       </v-col>
-      <v-col cols="8" sm="4">
-        <span class="text-h6">Track Number</span>
-      </v-col>
       <v-col cols="8" sm="1">
         <span class="text-h6">Edit</span>
       </v-col>
