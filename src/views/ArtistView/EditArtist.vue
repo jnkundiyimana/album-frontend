@@ -7,16 +7,25 @@
           v-model="currentArtist.artistName" @input="checkArtist"
         />
       </div>
-     <button class="badge badge-danger mr-2"
-      @click="cancelUpdate"
-    >
-      Cancel
-    </button>
-    <button type="submit" class="badge badge-success"
-      @click="updateArtist"
-    >
-      Update
-    </button>
+      <div class="row">
+          <div class="col-md-6">
+        <button type="submit" class="btn btn-primary btn-sm"
+              @click="updateArtist"
+        >
+         Update
+        </button>
+      </div>
+      <div class="col-md-6 text-right">
+        <button class="btn btn-danger btn-sm"
+          @click="cancelUpdate"
+        >
+          Cancel
+        </button>
+      </div>
+      </div>
+      
+    
+    
     <p style='color:red'>{{ message }}</p>
   </div>
   <div v-else>
@@ -64,7 +73,6 @@ export default {
     },
     checkArtist(){
       ArtistDataService.getAll().then(res => {
-        //console.log('initial artist name: ', this.initialArtist)
         const artistsList = res.data.filter(obj => obj.artistName != this.initialArtist);
         if(artistsList.some(artist => artist.artistName.toLowerCase() === this.currentArtist.artistName.toLowerCase())){
             this.message = 'Artist already exist'
@@ -73,19 +81,6 @@ export default {
         }
       });
     },
-    //deleteArtist() {
-    //    var objs = [];
-    //    AlbumDataService.getAll().then(res =>{
-    //    objs = res.data;
-    //    }).catch(err => {
-    //      console.log(err);
-    //    });
-    //    console.log("this is an object", obj);
-    //    for( i = 0; i<= objs.length; i++){
-    //      if(objs[i].artistId == this.currentArtist.id){
-    //        this.message = 'Artist album should be deleted first to delete Artist';
-    //        return;
-    //      }
     cancelUpdate(){
       this.$router.push({ name: "artistList" });
     },

@@ -14,11 +14,11 @@
             />
         </div>
         <div class="row">
-          <div class="col">
-            <button @click="saveArtist" class="btn btn-primary">Submit</button>     
+          <div class="col-md-6">
+            <button @click="saveArtist" class="btn btn-success btn-sm">Submit</button>     
           </div>
-          <div class="col">
-            <button @click="cancelArtist" class="btn btn-danger">Cancel</button>
+          <div class="col-md-6 text-right">
+            <button @click="cancelArtist" class="btn btn-danger btn-sm">Cancel</button>
           </div>
         </div>
       <p style='color:red'>{{ message }}</p>

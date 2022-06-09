@@ -53,14 +53,6 @@ export default{
                 console.log('this is the albumTitle', albumTitle);
                 console.log('this is the data:', res.data)
             })
-            
-            // ArtistDataService.delete(artist.id)
-            // .then(() => {
-            //     this.refreshList()
-            // })
-            // .catch(e => {
-            //     console.log(e.data);
-            // });
         },
         retrieveArtists(){
             ArtistDataService.getAll().then(res =>{
