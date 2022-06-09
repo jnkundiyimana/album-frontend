@@ -23,8 +23,9 @@
 </template>
 
 <script>
-import ArtistDataService from '../../services/ArtistDataService';
-import ArtistDisplay from '@/components/Artist/ArtistDisplay.vue';
+import ArtistDataService from '@/services/ArtistDataService';
+import AlbumDataService from '@/services/AlbumDataService';
+import ArtistDisplay from '@/components/ArtistDisplay.vue';
 export default{
     name: 'artistList',
     data(){
@@ -38,17 +39,28 @@ export default{
         ArtistDisplay
     },
     methods:{
-         goEdit(artist){
+        addArtist(){
+            this.$router.push({name: 'addArtist'});
+        },
+        goEdit(artist){
             this.$router.push({name:'editArtist', params:{id: artist.id}});
         },
         goDelete(artist){
-            ArtistDataService.delete(artist.id)
-            .then(() => {
-                this.refreshList()
+            console.log('this is artist',artist);
+            console.log('this is artist',artist.id);
+            AlbumDataService.get(artist.id).then(res =>{
+                const albumTitle =  res.data.title;
+                console.log('this is the albumTitle', albumTitle);
+                console.log('this is the data:', res.data)
             })
-            .catch(e => {
-                console.log(e.data);
-            });
+            
+            // ArtistDataService.delete(artist.id)
+            // .then(() => {
+            //     this.refreshList()
+            // })
+            // .catch(e => {
+            //     console.log(e.data);
+            // });
         },
         retrieveArtists(){
             ArtistDataService.getAll().then(res =>{

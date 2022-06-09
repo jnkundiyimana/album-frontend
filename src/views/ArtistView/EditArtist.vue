@@ -1,39 +1,23 @@
 <template>
   <div v-if="currentArtist" class="edit-form">
-    <h1>Edit Artist</h1>
-    <v-form>
-      <v-row>
-        <v-col cols="12" sm="4">
-          <v-label>
-            <span class="text-h8">Artist Name: </span>
-          </v-label>
-        </v-col>
-        <v-col cols="12" sm="8">
-          <v-text-field
-            v-model="currentArtist.artistName"
-          />
-        </v-col>
-      </v-row>
-      
-      
+    <h1>Edit Artist</h1> 
       <div class="form-group">
-        <label for="artistName">Artist Name </label>
+        <label for="artistName">Artist Name: </label>
         <input type="text" class="form-control" id="artistName"
-          v-model="currentArtist.artistName"
+          v-model="currentArtist.artistName" @input="checkArtist"
         />
       </div>
-    </v-form>
      <button class="badge badge-danger mr-2"
-      @click="deleteArtist"
+      @click="cancelUpdate"
     >
-      Delete
+      Cancel
     </button>
     <button type="submit" class="badge badge-success"
       @click="updateArtist"
     >
       Update
     </button>
-    <p>{{ message }}</p>
+    <p style='color:red'>{{ message }}</p>
   </div>
   <div v-else>
     <br />
@@ -42,12 +26,12 @@
 </template>
 <script>
 import ArtistDataService from "../../services/ArtistDataService";
-//import AlbumDataService from "../../services/AlbumDataService";
 export default {
   name: "artistDetail",
   data() {
     return {
       currentArtist: null,
+      initialArtist: null,
       message: ''
     };
   },
@@ -56,6 +40,7 @@ export default {
       ArtistDataService.get(id)
         .then(response => {
           this.currentArtist = response.data;
+          this.initialArtist = response.data.artistName;
           console.log(response.data);
         })
         .catch(e => {
@@ -63,16 +48,32 @@ export default {
         });
     },
     updateArtist() {
-       ArtistDataService.update(this.currentArtist.id, this.currentArtist)
+      if(this.message.length<1){
+        ArtistDataService.update(this.currentArtist.id, this.currentArtist)
         .then(response => {
           console.log("artist has been deleted",response.data);
-          this.message = 'The artist was updated successfully!';
+          this.$router.push({ name: "artistList" });
         })
         .catch(e => {
           console.log(e);
         });
+      }else{
+        this.message='Please, enter Non-existing Artist!!'
+      }
+       
     },
-    deleteArtist() {
+    checkArtist(){
+      ArtistDataService.getAll().then(res => {
+        //console.log('initial artist name: ', this.initialArtist)
+        const artistsList = res.data.filter(obj => obj.artistName != this.initialArtist);
+        if(artistsList.some(artist => artist.artistName.toLowerCase() === this.currentArtist.artistName.toLowerCase())){
+            this.message = 'Artist already exist'
+        }else{
+           this.message = ''
+        }
+      });
+    },
+    //deleteArtist() {
     //    var objs = [];
     //    AlbumDataService.getAll().then(res =>{
     //    objs = res.data;
@@ -85,15 +86,8 @@ export default {
     //        this.message = 'Artist album should be deleted first to delete Artist';
     //        return;
     //      }
-         ArtistDataService.delete(this.currentArtist.id)
-        .then(response => {
-          console.log(response.data);
-          this.$router.push({ name: "artistList" });
-        })
-        .catch(e => {
-          console.log(e);
-        });
-      //}
+    cancelUpdate(){
+      this.$router.push({ name: "artistList" });
     },
   },
   mounted() {

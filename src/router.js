@@ -49,19 +49,19 @@ const routes =  [
   {
     path: '/artistList',
     name: 'artistList',
-    component: () => import("./components/Artist/ArtistList.vue"),
+    component: () => import("./views/ArtistView/ArtistList.vue"),
     props: true
   },
   {
     path: '/addArtist',
     name: 'addArtist',
-    component: () => import("./components/Artist/AddArtist.vue"),
+    component: () => import("./views/ArtistView/AddArtist.vue"),
     props: true
   },
   {
-    path: '/artistDetail/:id',
-    name: 'artistDetail',
-    component: () => import("./components/Artist/ArtistDetail.vue"),
+    path: '/editArtist/:id',
+    name: 'editArtist',
+    component: () => import("./views/ArtistView/EditArtist.vue"),
     props: true
   }
 ];
