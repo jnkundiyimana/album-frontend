@@ -3,9 +3,6 @@
     <v-col cols="8" sm="2">
       <span>{{ track.trackName }}</span>
     </v-col>
-    <v-col cols="8" sm="4">
-      <span> {{ track.trackNumber }}</span>
-    </v-col>
     <v-col cols="8" sm="1">
       <v-btn size="x-small" icon="mdi-pencil" @click="updateLesson" />
     </v-col>
