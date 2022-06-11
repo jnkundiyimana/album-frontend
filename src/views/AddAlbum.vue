@@ -6,10 +6,6 @@
             label="Title"
             v-model="album.title"
         />
-        <v-text-field
-            label="Number Of Tracks"
-            v-model="album.numberOfTracks"
-        />
         <v-select
           :items="artists"
           label="Artist"
@@ -41,7 +37,6 @@ export default {
       album: {
         id: null,
         title: "",
-        numberOfTracks: "",
         artistId: ""
       },
       message: "Enter data and click save",
