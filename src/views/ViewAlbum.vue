@@ -40,7 +40,6 @@ export default {
   data() {
     return {
       album: null,
-      message: "Add, Edit or Delete Tracks",
     };
   },
   methods: {
