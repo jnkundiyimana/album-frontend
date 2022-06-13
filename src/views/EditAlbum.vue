@@ -3,7 +3,6 @@
   <h4>{{ message }}</h4>
   <v-form>
     <v-text-field label="Title" v-model="album.title" />
-    <v-text-field label="Number Of Tracks" v-model="album.numberOfTracks" />
     <v-select
       :items="artists"
       label="Artist"
