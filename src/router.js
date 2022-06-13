@@ -22,28 +22,40 @@ const routes =  [
     name: "add",
     component: () => import("./views/AddAlbum.vue")
   },
-  {
-    path: "/view",
-    name: "view",
-    component: () => import("./views/ViewTutorial.vue"),
-    props: true
-  },
+  // {
+  //   path: "/view",
+  //   name: "view",
+  //   component: () => import("./views/ViewTutorial.vue"),
+  //   props: true
+  // },
   {
     path: "/viewAlbum/:id",
     name: "viewAlbum",
     component: () => import("./views/ViewAlbum.vue"),
     props: true
   },
+  // {
+  //   path: "/addLesson",
+  //   name: "addLesson",
+  //   component: () => import("./views/AddLesson.vue"),
+  //   props: true
+  // },
   {
-    path: "/addLesson",
-    name: "addLesson",
-    component: () => import("./views/AddLesson.vue"),
-    props: true
+      path: "/addTrack/:albumId",
+      name: "addTrack",
+      component: () => import("./views/AddTrack.vue"),
+      props:true
   },
+  // {
+  //   path: "/editLesson",
+  //   name: "editLesson",
+  //   component: () => import("./views/EditLesson.vue"),
+  //   props: true
+  // },
   {
-    path: "/editLesson",
-    name: "editLesson",
-    component: () => import("./views/EditLesson.vue"),
+    path: "/editTrack/:albumId/:trackId",
+    name: "editTrack",
+    component: () => import("./views/EditTrack.vue"),
     props: true
   },
   {
