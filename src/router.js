@@ -5,6 +5,12 @@ const routes =  [
     alias: "/albums",
     name: "albums",
     component: () => import("./views/AllAlbums.vue")
+  }, 
+  {
+    path: "/edit/:id",
+    name: "edit",
+    component: () => import("./views/EditAlbum.vue"),
+    props: true
   },
   {
     path: "/add-album",
