@@ -18,7 +18,9 @@ export default{
         artist: Object,
     },
     data(){
-        return{};
+        return{
+            clickEvent: true
+        };
     },
     methods:{
         updateArtist(){
@@ -27,7 +29,8 @@ export default{
         deleteArtist(){
             this.$emit('deleteArtist');
         },
-    },
+        
+    }
 };
 
 </script>

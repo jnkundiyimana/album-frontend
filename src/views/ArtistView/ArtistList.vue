@@ -13,30 +13,42 @@
             <v-btn color="success" @click="addArtist">Add Artist</v-btn>
         </v-col>
     </v-row>
+    <Popup v-show="isVisible=deleteItemPopupVisible" @cancel="deleteItemPopupVisible=false" @confirm ="goDelete(currentArtist)">
+        <h6>Confirmation:</h6>
+        <p>Delete this Artist?</p>
+        <p class="text-danger">{{message}}</p>
+    </Popup>
     <ArtistDisplay
         v-for="artist in artists"
         :key="artist.id"
         :artist="artist"
         @updateArtist="goEdit(artist)"
-        @deleteArtist="goDelete(artist)"
+        @deleteArtist="confirmDeleteArtist(artist)"
+        
     />
 </template>
 
 <script>
 import ArtistDataService from '@/services/ArtistDataService';
-import AlbumDataService from '@/services/AlbumDataService';
 import ArtistDisplay from '@/components/ArtistDisplay.vue';
+import Popup from '../../components/Popup.vue';
 export default{
     name: 'artistList',
+    
     data(){
         return {
             artists: [],
             currentArtist: null,
             currentIndex: -1,
+            deleteItemPopupVisible: false,
+            message : '',
+            selectedArtist: null
         };
+        
     },
     components:{
-        ArtistDisplay
+        ArtistDisplay,
+        Popup
     },
     methods:{
         addArtist(){
@@ -45,19 +57,33 @@ export default{
         goEdit(artist){
             this.$router.push({name:'editArtist', params:{id: artist.id}});
         },
-        goDelete(artist){
-            console.log('this is artist',artist);
-            console.log('this is artist',artist.id);
-            AlbumDataService.get(artist.id).then(res =>{
-                const albumTitle =  res.data.title;
-                console.log('this is the albumTitle', albumTitle);
-                console.log('this is the data:', res.data)
+        confirmDeleteArtist(artist){
+            this.deleteItemPopupVisible = true;
+            this.currentArtist = artist;
+            ArtistDataService.getArtistAlbums(artist.id).then(res => {
+                if(res.data.length > 0){
+                    this.message = artist.artistName + ' has album, this will delete all its albums.';
+                }
+                else
+                {
+                    this.message = artist.artistName;
+                }
+            }).catch(err => {
+                console.log(err)
             })
+        },
+        goDelete(artist){
+            console.log('this artist is deleted',artist.id);
+            ArtistDataService.delete(artist.id).then(() =>{
+                  this.retrieveArtists()  
+            }).catch(err =>{
+                console.log(err.response.data.message);
+            })
+            this.deleteItemPopupVisible = false;
         },
         retrieveArtists(){
             ArtistDataService.getAll().then(res =>{
                 this.artists = res.data;
-                console.log(res.data);
             }).catch(err => {
                 console.log(err);
             });
@@ -71,8 +97,7 @@ export default{
             this.currentArtist = artist;
             this.currentIndex = artist ? index : -1;
         },
-       
-    },
+    }, 
     mounted(){
         this.retrieveArtists();
     },
