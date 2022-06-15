@@ -4,11 +4,14 @@
     <h4>{{ message }}</h4>
     <h3>{{ album.title }}</h3>
     <v-btn color="success" @click="goEditAlbum()">Edit</v-btn>
-    <v-btn color="success" @click="goAddLesson(id)">Add A Track</v-btn>
+    <v-btn color="success" @click="goAddTrack(id)">Add A Track</v-btn>
 
     <v-row>
       <v-col cols="8" sm="2">
         <span class="text-h6">Track Name</span>
+      </v-col>
+      <v-col cols="8" sm="2">
+        <span class="text-h6">Track Number</span>
       </v-col>
       <v-col cols="8" sm="1">
         <span class="text-h6">Edit</span>
@@ -21,8 +24,8 @@
       v-for="track in album.tracks"
       :key="track.id"
       :track="track"
-      @deleteTrack="goDeleteLesson(track)"
-      @updateTrack="goEditLesson(track)"
+      @deleteTrack="deleteTrack(track)"
+      @editTrack="editTrack(track)"
     />
   </div>
   <div v-else>Loading</div>
@@ -30,6 +33,7 @@
 <script>
 import AlbumDataService from "../services/AlbumDataService";
 import TrackDisplay from "@/components/TrackDisplay.vue";
+import TrackDataService from "../services/TrackDataService";
 export default {
   name: "view-album",
   props: ["id"],
@@ -51,30 +55,30 @@ export default {
           this.message = e.response.data.message;
         });
     },
-    goEditTutorial() {
+    goEditAlbum() {
       this.$router.push({ name: "edit", params: { id: this.id } });
     },
-    goEditLesson(lesson) {
+    editTrack(track) {
       this.$router.push({
-        name: "editLesson",
-        params: { tutorialId: this.id, lessonId: lesson.id },
+        name: "editTrack",
+        params: { trackId: track.id, albumId: this.id },
       });
     },
-    goAddLesson() {
-      this.$router.push({ name: "addLesson", params: { tutorialId: this.id } });
+    goAddTrack() {
+      this.$router.push({ name: "addTrack", params: { albumId: this.id } });
     },
 
-    goDeleteLesson(lesson) {
-      LessonDataService.deleteLesson(lesson.tutorialId, lesson.id)
+    deleteTrack(track) {
+      TrackDataService.deleteTrack(track.albumId, track.id)
         .then(() => {
-          this.retrieveLessons();
+          this.retrieveTracks();
         })
         .catch((e) => {
           this.message = e.response.data.message;
         });
     },
     cancel() {
-      this.$router.push({ name: "tutorials" });
+      this.$router.push({ name: "albums" });
     },
   },
   mounted() {

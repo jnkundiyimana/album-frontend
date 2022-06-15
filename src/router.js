@@ -23,6 +23,18 @@ const routes =  [
     component: () => import("./views/ViewAlbum.vue"),
     props: true
   },
+  
+      path: "/addTrack/:albumId",
+      name: "addTrack",
+      component: () => import("./views/AddTrack.vue"),
+      props:true
+  },
+  {
+    path: "/editTrack/:albumId/:trackId",
+    name: "editTrack",
+    component: () => import("./views/EditTrack.vue"),
+    props: true
+  },
   {
     path: '/artistList',
     name: 'artistList',

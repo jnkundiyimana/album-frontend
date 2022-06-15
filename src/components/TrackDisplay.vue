@@ -3,11 +3,14 @@
     <v-col cols="8" sm="2">
       <span>{{ track.trackName }}</span>
     </v-col>
-    <v-col cols="8" sm="1">
-      <v-btn size="x-small" icon="mdi-pencil" @click="updateLesson" />
+    <v-col cols="8" sm="2">
+      <span>{{ track.trackNumber }}</span>
     </v-col>
     <v-col cols="8" sm="1">
-      <v-btn size="x-small" icon="mdi-trash-can" @click="deleteLesson" />
+      <v-btn size="x-small" icon="mdi-pencil" @click="editTrack" />
+    </v-col>
+    <v-col cols="8" sm="1">
+      <v-btn size="x-small" icon="mdi-trash-can" @click="deleteTrack" />
     </v-col>
   </v-row>
 </template>
@@ -21,11 +24,11 @@ export default {
     return {};
   },
   methods: {
-    deleteLesson() {
-      this.$emit("deleteLesson");
+    deleteTrack() {
+      this.$emit("deleteTrack");
     },
-    updateLesson() {
-      this.$emit("updateLesson");
+    editTrack() {
+      this.$emit("editTrack");
     },
   },
 };
