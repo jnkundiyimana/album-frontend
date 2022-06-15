@@ -19,9 +19,10 @@ class ArtistDataService {
   delete(id) {
     return http.delete(`/artists/${id}`);
   }
-//   deleteAll() {
-//     return http.delete(`/albums`);
-//   }
+
+  getArtistAlbums(artistId){
+    return http.get(`/artists/albums/${artistId}`);
+  }
 
 }
 export default new ArtistDataService();

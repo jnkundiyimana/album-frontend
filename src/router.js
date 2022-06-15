@@ -1,20 +1,15 @@
 import { createWebHistory, createRouter } from "vue-router";
 const routes =  [
   {
-    path: "/tutorials",
-    name: "tutorials",
-    component: () => import("./views/TutorialsList.vue")
-  },
-  {
     path: "/",
     alias: "/albums",
     name: "albums",
     component: () => import("./views/AllAlbums.vue")
-  },
+  }, 
   {
     path: "/edit/:id",
     name: "edit",
-    component: () => import("./views/EditTutorial.vue"),
+    component: () => import("./views/EditAlbum.vue"),
     props: true
   },
   {
@@ -22,36 +17,18 @@ const routes =  [
     name: "add",
     component: () => import("./views/AddAlbum.vue")
   },
-  // {
-  //   path: "/view",
-  //   name: "view",
-  //   component: () => import("./views/ViewTutorial.vue"),
-  //   props: true
-  // },
   {
     path: "/viewAlbum/:id",
     name: "viewAlbum",
     component: () => import("./views/ViewAlbum.vue"),
     props: true
   },
-  // {
-  //   path: "/addLesson",
-  //   name: "addLesson",
-  //   component: () => import("./views/AddLesson.vue"),
-  //   props: true
-  // },
-  {
+  
       path: "/addTrack/:albumId",
       name: "addTrack",
       component: () => import("./views/AddTrack.vue"),
       props:true
   },
-  // {
-  //   path: "/editLesson",
-  //   name: "editLesson",
-  //   component: () => import("./views/EditLesson.vue"),
-  //   props: true
-  // },
   {
     path: "/editTrack/:albumId/:trackId",
     name: "editTrack",
@@ -78,7 +55,7 @@ const routes =  [
   }
 ];
 const router = createRouter({
-  base: process.env.NODE_ENV === 'development' ? '/' : '/tutorial-frontend-1/',
+  base: process.env.NODE_ENV === 'development' ? '/' : '/album-frontend/',
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });

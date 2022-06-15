@@ -1,7 +1,13 @@
 <template>
   <v-row>
     <v-col cols="9" sm="2">
-      <span>{{ album.title }}</span>
+      <span
+        ><router-link
+          class="album_title"
+          :to="{ name: 'viewAlbum', params: { id: album.id } }"
+          >{{ album.title }}</router-link
+        ></span
+      >
     </v-col>
     <v-col cols="9" sm="4">
       <span> {{ album.numberOfTracks }}</span>
@@ -44,4 +50,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.album_title {
+  color: black;
+  text-decoration: none;
+}
+.album_title:hover {
+  color: rgb(77, 75, 75);
+  text-decoration: underline;
+}
+</style>
