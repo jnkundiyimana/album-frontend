@@ -23,7 +23,7 @@ const routes =  [
     component: () => import("./views/ViewAlbum.vue"),
     props: true
   },
-  
+  {
       path: "/addTrack/:albumId",
       name: "addTrack",
       component: () => import("./views/AddTrack.vue"),
