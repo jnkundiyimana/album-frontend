@@ -50,7 +50,6 @@ export default {
         .then(response => {
           this.currentArtist = response.data;
           this.initialArtist = response.data.artistName;
-          console.log(response.data);
         })
         .catch(e => {
           console.log(e);

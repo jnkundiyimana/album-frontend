@@ -29,7 +29,6 @@
 </template>
 <script>
 import AlbumDataService from "../services/AlbumDataService";
-import LessonDataService from "../services/LessonDataService";
 import TrackDisplay from "@/components/TrackDisplay.vue";
 export default {
   name: "view-album",
