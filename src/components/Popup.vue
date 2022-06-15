@@ -1,6 +1,5 @@
 <template>
         <v-row class="popup">
-            span x
             <div class="popup-inner">
                  <slot/>
                 <v-btn
