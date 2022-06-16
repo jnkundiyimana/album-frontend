@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import logo from "./assets/oc-logo-white.png";
+import logo from "./assets/album-logo.png";
 export default {
   name: "App",
 
