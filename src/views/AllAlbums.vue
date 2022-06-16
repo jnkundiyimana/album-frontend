@@ -89,7 +89,7 @@ export default {
       this.currentAlbum = album;
       this.currentIndex = album ? index : -1;
     },
-    removeAllAlbum() {
+    removeAllAlbums() {
       AlbumDataService.deleteAll()
         .then((response) => {
           console.log(response.data);
@@ -101,6 +101,7 @@ export default {
     },
 
     searchTitle() {
+      console.log("here");
       AlbumDataService.findByTitle(this.title)
         .then((response) => {
           this.albums = response.data;
