@@ -89,7 +89,7 @@ export default {
       this.currentAlbum = album;
       this.currentIndex = album ? index : -1;
     },
-    removeAllAlbum() {
+    removeAllAlbums() {
       AlbumDataService.deleteAll()
         .then((response) => {
           console.log(response.data);
